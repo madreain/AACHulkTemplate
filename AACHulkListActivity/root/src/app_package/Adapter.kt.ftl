@@ -21,7 +21,10 @@ public class ${activityClass}Adapter : BaseAdapter<${ktBeanName}>(R.layout.item_
      }
 
      override fun convert(helper: HulkViewHolder, item: ${ktBeanName}) {
+        val itemListBinding = helper.getBinding<ItemActivity${activityClass}Binding>()
+        if (itemListBinding != null) {
 
+        }
      }
 
  }

@@ -12,7 +12,7 @@
 
     <parameter
         id="fragmentClass"
-        name="Fragment Name"
+        name="Fragment Name(不需要写Fragment)"
         type="string"
         constraints="class|unique|nonempty"
         default="HulkListFragment"
@@ -44,20 +44,6 @@
         default="JavaBeanName"
         suggest="${fragmentClass}ListData"
         help="BaseRes 内部泛型 className" />
-
-    <!--<parameter-->
-        <!--id="isLauncher"-->
-        <!--name="Launcher Activity"-->
-        <!--type="boolean"-->
-        <!--default="false"-->
-        <!--help="If true, this activity will have a CATEGORY_LAUNCHER intent filter, making it visible in the launcher" />-->
-
-    <parameter
-        id="backwardsCompatibility"
-        name="Backwards Compatibility (AppCompat)"
-        type="boolean"
-        default="true"
-        help="If false, this activity base class will be Activity instead of AppCompatActivity" />
 
     <parameter
         id="packageName"
