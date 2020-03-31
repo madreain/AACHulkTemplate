@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<template
+    format="5"
+    revision="1"
+    name="AACHulkListFragment"
+    minApi="9"
+    minBuildApi="14"
+    description="一键创建MVPHulk的ListFragment">
+
+    <category value="AACHulkTemplate" />
+    <formfactor value="Mobile" />
+
+    <parameter
+        id="fragmentClass"
+        name="Fragment Name"
+        type="string"
+        constraints="class|unique|nonempty"
+        default="HulkListFragment"
+        help="The name of the fragment class to create" />
+        <!--suggest="${layoutToActivity(layoutName)}"-->
+
+    <parameter
+        id="generateLayout"
+        name="Generate Layout File"
+        type="boolean"
+        default="true"
+        help="If true, a layout file will be generated" />
+
+    <parameter
+        id="layoutName"
+        name="Layout Name"
+        type="string"
+        constraints="layout|unique|nonempty"
+        suggest="fragment_${classToResource(fragmentClass)}"
+        default="fragment_blank"
+        visibility="generateLayout"
+        help="The name of the layout to create for the activity" />
+
+    <parameter
+        id="ktBeanName"
+        name="BaseRes 内部泛型 className"
+        type="String"
+        constraints="class|unique|nonempty"
+        default="JavaBeanName"
+        suggest="${fragmentClass}ListData"
+        help="BaseRes 内部泛型 className" />
+
+    <!--<parameter-->
+        <!--id="isLauncher"-->
+        <!--name="Launcher Activity"-->
+        <!--type="boolean"-->
+        <!--default="false"-->
+        <!--help="If true, this activity will have a CATEGORY_LAUNCHER intent filter, making it visible in the launcher" />-->
+
+    <parameter
+        id="backwardsCompatibility"
+        name="Backwards Compatibility (AppCompat)"
+        type="boolean"
+        default="true"
+        help="If false, this activity base class will be Activity instead of AppCompatActivity" />
+
+    <parameter
+        id="packageName"
+        name="Package name"
+        type="string"
+        constraints="package"
+        default="com.madreain.hulk" />
+
+    <!-- 引用R包的包名 -->
+    <parameter
+       id="moduleName"
+       name="Module name"
+       type="string"
+       constraints="package"
+       suggest="${packageName}.module.${fragmentClass}" />
+
+    <!-- 128x128 thumbnails relative to template.xml -->
+    <thumbs>
+        <!-- default thumbnail is required -->
+        <thumb>template_blank_activity.png</thumb>
+    </thumbs>
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>

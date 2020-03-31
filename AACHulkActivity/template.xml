@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<template
+    format="5"
+    revision="1"
+    name="AACHulkActivity"
+    minApi="9"
+    minBuildApi="14"
+    description="一键创建AACHulk单Activity">
+
+    <category value="AACHulkTemplate" />
+    <formfactor value="Mobile" />
+
+    <parameter
+        id="activityClass"
+        name="Activity Name(不需要写Activity)"
+        type="string"
+        constraints="class|unique|nonempty"
+        suggest="${layoutToActivity(layoutName)}"
+        default="Hulk"
+        help="The name of the activity class to create" />
+
+    <parameter
+        id="generateLayout"
+        name="Generate Layout File"
+        type="boolean"
+        default="true"
+        help="If true, a layout file will be generated" />
+
+    <parameter
+        id="layoutName"
+        name="Layout Name"
+        type="string"
+        constraints="layout|unique|nonempty"
+        suggest="${activityToLayout(activityClass)}"
+        default="activity_main"
+        visibility="generateLayout"
+        help="The name of the layout to create for the activity" />
+
+    <!-- 对象 -->
+    <parameter
+        id="ktBeanName"
+        name="DataClassName"
+        type="String"
+        constraints="class|unique|nonempty"
+        default="JavaBeanName"
+        suggest="${activityClass}Data"
+        help="BaseRes 内部泛型 className" />
+
+    <parameter
+        id="isLauncher"
+        name="Launcher Activity"
+        type="boolean"
+        default="false"
+        help="If true, this activity will have a CATEGORY_LAUNCHER intent filter, making it visible in the launcher" />
+
+    <parameter
+        id="packageName"
+        name="Package name"
+        type="string"
+        constraints="package"
+        default="com.madreain.aachulk" />
+
+    <parameter
+       id="moduleName"
+       name="Module name"
+       type="string"
+       constraints="package"
+       suggest="${packageName}.module.${activityClass}" />
+
+    <!-- 128x128 thumbnails relative to template.xml -->
+    <thumbs>
+        <!-- default thumbnail is required -->
+        <thumb>template_blank_activity.png</thumb>
+    </thumbs>
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>

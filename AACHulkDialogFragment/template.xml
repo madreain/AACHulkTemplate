@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<template
+    format="5"
+    revision="1"
+    name="AACHulkDialogFragment"
+    minApi="9"
+    minBuildApi="14"
+    description="一键创建MVPHulk单DialogFragment">
+
+    <category value="AACHulkTemplate" />
+    <formfactor value="Mobile" />
+
+    <parameter
+        id="fragmentClass"
+        name="Fragment Name(不需要写Fragment)"
+        type="string"
+        constraints="class|unique|nonempty"
+        default="HulkFragment"
+        help="The name of the fragment class to create" />
+    <!--suggest="${layoutToActivity(layoutName)}"-->
+
+    <parameter
+        id="generateLayout"
+        name="Generate Layout File"
+        type="boolean"
+        default="true"
+        help="If true, a layout file will be generated" />
+
+    <parameter
+        id="layoutName"
+        name="Fragment Layout Name"
+        type="string"
+        constraints="layout|unique|nonempty"
+        suggest="fragment_${classToResource(fragmentClass)}"
+        default="fragment_blank"
+        visibility="generateLayout"
+        help="The name of the layout to create for the fragment" />
+
+    <!-- 对象 -->
+    <parameter
+        id="ktBeanName"
+        name="DataClassName"
+        type="String"
+        constraints="class|unique|nonempty"
+        default="JavaBeanName"
+        suggest="${fragmentClass}Data"
+        help="BaseRes 内部泛型 className" />
+
+    <parameter
+        id="packageName"
+        name="Package name"
+        type="string"
+        constraints="package"
+        default="com.madreain.hulk" />
+
+    <parameter
+        id="moduleName"
+        name="Module name"
+        type="string"
+        constraints="package"
+        suggest="${packageName}.module.${fragmentClass}" />
+
+    <!-- 128x128 thumbnails relative to template.xml -->
+    <thumbs>
+        <!-- default thumbnail is required -->
+        <thumb>template_blank_activity.png</thumb>
+    </thumbs>
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>
